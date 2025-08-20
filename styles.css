@@ -1,0 +1,88 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Georgia', serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    z-index: 1;
+}
+
+header, .donation, .contact {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 48px;
+    margin: 50px 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.donate-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #4CAF50; /* Green to evoke nature */
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 20px;
+    transition: background-color 0.3s;
+}
+
+.donate-button:hover {
+    background-color: #45a049;
+}
+
+.contact {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.contact h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 36px;
+    }
+    .donate-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .contact h2 {
+        font-size: 20px;
+    }
+}
