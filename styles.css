@@ -1,10 +1,24 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Georgia', serif;
+/* ─── Variables ─────────────────────────────────────────────── */
+:root {
+    --gold:       #C9A84C;
+    --gold-light: #e2c97e;
+    --white:      #ffffff;
+    --overlay:    rgba(0, 0, 0, 0.55);
 }
 
+/* ─── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ─── Full-page background ──────────────────────────────────── */
 .container {
     display: flex;
     flex-direction: column;
@@ -15,86 +29,143 @@ body, html {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    color: white;
+    color: var(--white);
     text-align: center;
     position: relative;
+    padding: 0 20px;
 }
 
+/* Dark overlay */
 .container::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    inset: 0;
+    background: var(--overlay);
     z-index: 1;
 }
 
+/* All direct children sit above the overlay */
 header, .donation, .contact {
     position: relative;
     z-index: 2;
+    width: 100%;
+}
+
+/* ─── Header / Logo ─────────────────────────────────────────── */
+header {
+    padding-top: 60px;
+    padding-bottom: 10px;
 }
 
 .site-logo {
-    width: 220px;
-    max-width: 80vw;
-    margin: 50px 20px 10px;
+    width: 200px;
+    max-width: 70vw;
     display: block;
+    margin: 0 auto 18px;
+    /* Gentle fade-in on load */
+    animation: fadeDown 1s ease both;
 }
 
 .tagline {
-    font-size: 18px;
-    margin: 0 20px 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    font-style: italic;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    animation: fadeDown 1s ease 0.2s both;
 }
+
+/* ─── Donate Button ─────────────────────────────────────────── */
+.donation {
+    padding: 20px 0;
 }
 
 .donate-button {
     display: inline-block;
-    padding: 15px 30px;
-    background-color: #C9A84C; /* Warm Gold  */
-    color: white;
+    padding: 14px 40px;
+    background-color: transparent;
+    color: var(--gold);
     text-decoration: none;
-    font-size: 18px;
-    border-radius: 5px;
-    margin: 20px;
-    transition: background-color 0.3s;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: 2px solid var(--gold);
+    border-radius: 2px;
+    transition: background-color 0.3s, color 0.3s;
+    animation: fadeUp 1s ease 0.4s both;
 }
 
 .donate-button:hover {
-    background-color: #45a049;
+    background-color: var(--gold);
+    color: #1a1008;
 }
 
+/* ─── Contact Section ───────────────────────────────────────── */
 .contact {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.65);
+    border-top: 1px solid rgba(201, 168, 76, 0.35);
+    padding: 24px 30px 28px;
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 1.9;
+    animation: fadeUp 1s ease 0.6s both;
 }
 
-.contact h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.contact-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    margin-bottom: 4px;
 }
 
-.contact p {
-    margin: 5px 0;
+.email-link {
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, color 0.2s;
 }
 
+.email-link:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+}
+
+.charity-info {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .site-logo {
-        width: 160px;
+        width: 150px;
     }
     .tagline {
-        font-size: 15px;
+        font-size: 11px;
+        letter-spacing: 2px;
     }
     .donate-button {
-        font-size: 16px;
-        padding: 10px 20px;
+        font-size: 13px;
+        padding: 12px 30px;
     }
-    .contact h2 {
-        font-size: 20px;
+    .contact {
+        font-size: 14px;
+        padding: 20px 20px 24px;
     }
 }
